@@ -1,11 +1,20 @@
 import { Container, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import Grid2 from "@mui/material/Unstable_Grid2";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import FeaturedProducts from "./FeaturedProducts/FeaturedProducts";
-import { featured } from "../../Data";
+// import { featured } from "../../Data";
 
 const Featured = () => {
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:5000/product")
+      .then((res) => res.json())
+      .then((data) => setProducts(data));
+  }, []);
+
+  // console.log(products);
+
   return (
     <Container fixed sx={{ overflowY: "hidden" }}>
       <Box
@@ -43,7 +52,7 @@ const Featured = () => {
           paddingBottom: 1,
         }}
       >
-        <FeaturedProducts products={featured} />
+        <FeaturedProducts products={products} />
       </Grid2>
     </Container>
   );

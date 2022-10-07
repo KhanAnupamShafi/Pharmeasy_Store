@@ -11,135 +11,139 @@ import {
   FaPhone,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import FooterBottom from "./FooterBottom";
 
 const Footer = () => {
   return (
-    <Container>
-      <Wrapper>
-        <FooterContainer>
-          <FooterContent>
-            <Row>
-              <Details>
-                <Logo>
-                  <img src={logo} alt="Logo" />
-                  <h5>
-                    Do you want to be the first to know about promotions and
-                    discounts?
-                  </h5>
-                  <p>Subscribe to our newsletter and buy profitably!</p>
-                </Logo>
-                <Info>
-                  <Company>
-                    <h2>Company</h2>
-                    <Link to="/">
-                      <span>Contact Us</span>
-                    </Link>
-                    <Link to="/">
-                      <span>My Account</span>
-                    </Link>
-                    <Link to="/">
-                      <span>Store Locator</span>
-                    </Link>
-                    <Link to="/">
-                      <span>About Us</span>
-                    </Link>
-                  </Company>
-                  <Company>
-                    <h2>Our Policy</h2>
-                    <Link to="/">
-                      <span>Terms & Conditions</span>
-                    </Link>
-                    <Link to="/">
-                      <span>Supplier terms</span>
-                    </Link>
-                    <Link to="/">
-                      <span>Discounts</span>
-                    </Link>
-                    <Link to="/">
-                      <span>Careers</span>
-                    </Link>
-                  </Company>
-                </Info>
-              </Details>
+    <>
+      <Container>
+        <Wrapper>
+          <FooterContainer>
+            <FooterContent>
+              <Row>
+                <Details>
+                  <Logo>
+                    <img src={logo} alt="Logo" />
+                    <h5>
+                      Do you want to be the first to know about promotions and
+                      discounts?
+                    </h5>
+                    <p>Subscribe to our newsletter and buy profitably!</p>
+                  </Logo>
+                  <Info>
+                    <Company>
+                      <h2>Company</h2>
+                      <Link to="/">
+                        <span>Contact Us</span>
+                      </Link>
+                      <Link to="/">
+                        <span>My Account</span>
+                      </Link>
+                      <Link to="/">
+                        <span>Store Locator</span>
+                      </Link>
+                      <Link to="/">
+                        <span>About Us</span>
+                      </Link>
+                    </Company>
+                    <Company>
+                      <h2>Our Policy</h2>
+                      <Link to="/">
+                        <span>Terms & Conditions</span>
+                      </Link>
+                      <Link to="/">
+                        <span>Supplier terms</span>
+                      </Link>
+                      <Link to="/">
+                        <span>Discounts</span>
+                      </Link>
+                      <Link to="/">
+                        <span>Careers</span>
+                      </Link>
+                    </Company>
+                  </Info>
+                </Details>
 
-              <Contact>
+                <Contact>
+                  <li>
+                    <i>
+                      <FaMapMarkerAlt />
+                    </i>
+                    <Content>
+                      <h1>Company Address</h1>
+                      <p>45, Kawlar, New Airport, Dhaka 1229</p>
+                      <p>Bangladesh</p>
+                    </Content>
+                  </li>
+                  <li>
+                    <i>
+                      <FaPhone />
+                    </i>
+                    <Content>
+                      <h1>Contact Us</h1>
+                      <p>(+880) 1790 405744</p>
+                    </Content>
+                  </li>
+                  <li>
+                    <i>
+                      <FaEnvelope />
+                    </i>
+                    <Content>
+                      <h1>Social Enquiries</h1>
+                      <p>khan.anupam.shafi@northsouth.edu</p>
+                    </Content>
+                  </li>
+                </Contact>
+              </Row>
+            </FooterContent>
+            <Newsletter>
+              <Header>
+                <h3>PharmEasy</h3>
+                <h2>Newsletter</h2>
+              </Header>
+              <p>
+                Subscribe to our newsletter and buy profitably to know about
+                promotions
+              </p>
+              <Form>
+                <div>
+                  <Input
+                    id="NewsletterForm"
+                    type="email"
+                    placeholder="Your Email"
+                  />
+                </div>
+                <Button type="submit">Submit</Button>
+              </Form>
+              <h3>Follow Us</h3>
+              <SocialMedia>
                 <li>
-                  <i>
-                    <FaMapMarkerAlt />
-                  </i>
-                  <Content>
-                    <h1>Company Address</h1>
-                    <p>45, Kawlar, New Airport, Dhaka 1229</p>
-                    <p>Bangladesh</p>
-                  </Content>
+                  <a href="https://www.facebook.com/">
+                    <FaFacebookSquare />
+                  </a>
                 </li>
                 <li>
-                  <i>
-                    <FaPhone />
-                  </i>
-                  <Content>
-                    <h1>Contact Us</h1>
-                    <p>(+880) 1790 405744</p>
-                  </Content>
+                  <a href="https://www.facebook.com/">
+                    <FaTwitterSquare />
+                  </a>
                 </li>
                 <li>
-                  <i>
-                    <FaEnvelope />
-                  </i>
-                  <Content>
-                    <h1>Social Enquiries</h1>
-                    <p>khan.anupam.shafi@northsouth.edu</p>
-                  </Content>
+                  <a href="https://www.facebook.com/">
+                    <FaInstagram />
+                  </a>
                 </li>
-              </Contact>
-            </Row>
-          </FooterContent>
-          <Newsletter>
-            <Header>
-              <h3>PharmEasy</h3>
-              <h2>Newsletter</h2>
-            </Header>
-            <p>
-              Subscribe to our newsletter and buy profitably to know about
-              promotions
-            </p>
-            <Form>
-              <div>
-                <Input
-                  id="NewsletterForm"
-                  type="email"
-                  placeholder="Your Email"
-                />
-              </div>
-              <Button type="submit">Submit</Button>
-            </Form>
-            <h3>Follow Us</h3>
-            <SocialMedia>
-              <li>
-                <a href="https://www.facebook.com/">
-                  <FaFacebookSquare />
-                </a>
-              </li>
-              <li>
-                <a href="https://www.facebook.com/">
-                  <FaTwitterSquare />
-                </a>
-              </li>
-              <li>
-                <a href="https://www.facebook.com/">
-                  <FaInstagram />
-                </a>
-              </li>
-              <li>
-                <a href="https://www.facebook.com/">
-                  <FaYoutube />
-                </a>
-              </li>
-            </SocialMedia>
-          </Newsletter>
-        </FooterContainer>
-      </Wrapper>
-    </Container>
+                <li>
+                  <a href="https://www.facebook.com/">
+                    <FaYoutube />
+                  </a>
+                </li>
+              </SocialMedia>
+            </Newsletter>
+          </FooterContainer>
+        </Wrapper>
+      </Container>
+      <FooterBottom />
+    </>
   );
 };
 
@@ -379,15 +383,18 @@ const Input = styled.input`
 const SocialMedia = styled.ul`
   list-style: none;
   display: flex;
-  margin-top: 12px;
-  padding-top: 20px;
+  justify-content: center;
+  padding-top: 2px;
   li {
-    flex: auto;
-    margin-right: 15px;
+    padding-right: 5px;
     a {
       text-decoration: none;
       font-size: 28px;
       color: inherit;
+      transition: 0.3s ease-in;
+      &:hover {
+        color: #f0a945;
+      }
     }
   }
 `;

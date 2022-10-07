@@ -29,41 +29,41 @@ import {
 } from "react-firebase-hooks/auth";
 import SignUp from "./SignUp";
 import Footer from "../../components/Footer/Footer";
+import useToken from "../../hooks/useToken";
 
 const SignIn = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-  let from = location.state?.from?.pathname || "/";
-
   const [signInWithGoogle, userGoogle, loadingGoogle, errorGoogle] =
     useSignInWithGoogle(auth);
-  const [signInWithEmailAndPassword, user, loading, error] =
-    useSignInWithEmailAndPassword(auth);
-
   const {
     register,
     formState: { errors },
     handleSubmit,
     reset,
   } = useForm({});
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
+  const [token] = useToken(user || userGoogle);
 
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
     signInWithEmailAndPassword(data?.email, data?.password);
 
     reset();
   };
 
-  //useEffect required to avoid Cannot update a component error
-  useEffect(() => {
-    if (user || userGoogle) {
-      navigate(from, { replace: "true" });
-      console.log(user || userGoogle);
-    }
-  }, [user, userGoogle, from, navigate]);
-
   let loadingButton;
   let signInError;
+  const navigate = useNavigate();
+  const location = useLocation();
+  let from = location.state?.from?.pathname || "/";
+  //useEffect required to avoid Cannot update a component error
+  useEffect(() => {
+    if (token) {
+      navigate(from, { replace: "true" });
+      // console.log(from);
+    }
+  }, [token, from, navigate]);
+
   if (loading || loadingGoogle) {
     loadingButton = (
       <p>
@@ -98,7 +98,7 @@ const SignIn = () => {
                   >
                     Register
                   </Typography>
-                  <SignUp />
+                  <SignUp userGoogle={userGoogle} />
                 </Box>
               </Grid2>
               <Divider orientation="vertical" flexItem>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import {
   Alert,
@@ -19,13 +19,14 @@ import {
 } from "react-firebase-hooks/auth";
 import auth from "../../Firebase/firebase.init";
 import { useNavigate } from "react-router-dom";
+import useToken from "../../hooks/useToken";
 
-const SignUp = () => {
+const SignUp = ({ userGoogle }) => {
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
   const [updateProfile, updating, errorUpdate] = useUpdateProfile(auth);
+  const [token] = useToken(user || userGoogle);
   const navigate = useNavigate();
-
   const {
     register,
     getValues,
@@ -39,7 +40,7 @@ const SignUp = () => {
     console.log(data);
     await createUserWithEmailAndPassword(data?.email1, data?.password1);
     await updateProfile({ displayName: data?.firstName });
-    navigate("/home");
+    // navigate("/home");
     reset();
   };
 
@@ -59,9 +60,13 @@ const SignUp = () => {
       </>
     );
   }
-  if (user) {
-    console.log(user);
-  }
+
+  //useEffect required to avoid Cannot update a component error
+  useEffect(() => {
+    if (token) {
+      navigate("/", { replace: "true" });
+    }
+  }, [token, navigate]);
   return (
     <Box
       component="form"
@@ -126,7 +131,7 @@ const SignUp = () => {
             fullWidth
             name="password1"
             label="Password"
-            type="password1"
+            type="password"
             id="password1"
             autoComplete="new-password"
           />

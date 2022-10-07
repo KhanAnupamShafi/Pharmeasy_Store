@@ -95,6 +95,7 @@ const Container = styled.div`
 const Left = styled.div`
   display: flex;
   justify-content: center;
+
   flex: 1;
   ul {
     display: flex;
@@ -114,6 +115,7 @@ const Left = styled.div`
 const Right = styled.div`
   flex: 2;
   justify-content: space-around;
+
   ul {
     width: 100%;
     display: flex;
@@ -123,6 +125,18 @@ const Right = styled.div`
     padding: 0 12px;
     align-items: center;
     justify-content: space-around;
+
+    li {
+      @media (max-width: 1330px) {
+        &:nth-child(1) {
+          display: none;
+        }
+      }
+    }
+
+    @media (max-width: 768px) {
+      display: none;
+    }
   }
 
   button {

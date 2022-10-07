@@ -8,6 +8,7 @@ import {
   CardHeader,
   CardMedia,
   Chip,
+  CircularProgress,
   Container,
   Stack,
   Typography,
@@ -15,23 +16,43 @@ import {
 import { Box, styled } from "@mui/system";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import { makeStyles } from "@mui/styles";
-import { featured } from "../../Data";
 import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 
 const Products = () => {
   const classes = useStyles();
+  // const [products, setProducts] = useState([]);
+  // useEffect(() => {
+  //   fetch("http://localhost:5000/product")
+  //     .then((res) => res.json())
+  //     .then((data) => setProducts(data));
+  // }, []);
+
+  const { data: products, isLoading } = useQuery(["Products"], () =>
+    fetch(`http://localhost:5000/product`).then((res) => res.json())
+  );
+  // console.log(products);
+
+  if (isLoading) {
+    return (
+      <p>
+        <CircularProgress />
+      </p>
+    );
+  }
   return (
     <Box>
       <Container maxWidth="lg" sx={{ px: 2, py: 4 }}>
         {/* columnSpacing={{ xs: 0, sm: 2, md: 5 }} spacing={5} sx={{ p: 1 }} */}
         <Grid2
           container
+          justifyContent="center"
           columnSpacing={{ xs: 0, sm: 2, md: 5 }}
           spacing={5}
-          sx={{ p: 1 }}
+          sx={{ p: 1, m: "auto" }}
         >
-          {featured.map((data) => (
-            <Grid2 item key={data?.id} xs={12} sm={6} md={6} lg={4}>
+          {products.map((data) => (
+            <Grid2 item key={data?._id} xs={12} sm={6} md={6} lg={4}>
               <Card
                 className={classes.card}
                 sx={
@@ -135,6 +156,7 @@ const useStyles = makeStyles((Theme) => ({
   card: {
     position: "relative",
     width: "88%",
+    margin: "0 auto",
     // maxHeight: "660px",
     overflow: "hidden",
     display: "flex",

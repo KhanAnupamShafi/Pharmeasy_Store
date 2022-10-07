@@ -19,7 +19,7 @@ const FeaturedProducts = ({ products }) => {
     <>
       {products.map((data) => (
         <Grid2
-          key={data.id}
+          key={data._id}
           item
           xs={12}
           sm={6}

@@ -42,14 +42,14 @@ const HeroBanner = () => {
                     <h1>Pharmacy Kit</h1>
                   </SliderTitle>
                 </Fade>
-                <Fade cascade triggerOnce={false}>
+                <Fade direction={"right"}>
                   <SliderDesc>
                     Taking care of your NHS prescriptions. Order your medicine,
                     get reminders and have it delivered for free. To your home,
                     your family or friends.
                   </SliderDesc>
-                  <ShopButton>Shop Now</ShopButton>
                 </Fade>
+                <ShopButton>Shop Now</ShopButton>
               </SliderContent>
 
               <SliderImage src={image1} alt="Slider Image" />
@@ -64,15 +64,14 @@ const HeroBanner = () => {
                     <h1>Personal Care</h1>
                   </SliderTitle>
                 </Fade>
-                <Fade cascade triggerOnce={false}>
+                <Fade direction={"right"}>
                   <SliderDesc>
                     Taking care of your NHS prescriptions. Order your medicine,
                     get reminders and have it delivered for free. To your home,
                     your family or friends.
                   </SliderDesc>
-
-                  <ShopButton>Shop Now</ShopButton>
                 </Fade>
+                <ShopButton>Shop Now</ShopButton>
               </SliderContent>
               <SliderImage src={image2} alt="Slider Image" />
             </SliderWrapper>
@@ -86,14 +85,14 @@ const HeroBanner = () => {
                     <h1>Healthcare Devices</h1>
                   </SliderTitle>
                 </Fade>
-                <Fade cascade triggerOnce={false}>
+                <Fade direction={"right"}>
                   <SliderDesc>
                     Taking care of your NHS prescriptions. Order your medicine,
                     get reminders and have it delivered for free. To your home,
                     your family or friends.
                   </SliderDesc>
-                  <ShopButton>Shop Now</ShopButton>
                 </Fade>
+                <ShopButton>Shop Now</ShopButton>
               </SliderContent>
               <SliderImage src={image3} alt="Slider Image" />
             </SliderWrapper>

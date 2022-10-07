@@ -7,11 +7,24 @@ import { Link } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../Firebase/firebase.init";
 import { signOut } from "firebase/auth";
+import { useShoppingCart } from "use-shopping-cart";
+import CartModal from "../CartModal/CartModal";
+
 const HeaderMain = () => {
   const [user] = useAuthState(auth);
   const [fix, setFix] = useState(false);
+  const { cartDetails } = useShoppingCart();
+  // const [isOpen, setIsOpen] = useState(false);
+
+  // const toggleModal = () => setIsOpen(!isOpen);
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   const logout = () => {
     signOut(auth);
+    localStorage.removeItem("accessToken");
   };
 
   const setFixedEvent = () => {
@@ -64,9 +77,9 @@ const HeaderMain = () => {
                       display="block"
                       variant="button"
                     >
-                      Hello,
+                      Welcome,
                       <Typography component="span" variant="overline">
-                        {user?.displayName}
+                        {user.displayName ? user?.displayName : "user"}
                       </Typography>
                     </Typography>
                     <div>
@@ -125,7 +138,7 @@ const HeaderMain = () => {
                   </UserInfo>
                 </Link>
               )}
-              <CartInfo>
+              <CartInfo onClick={handleOpen}>
                 <span>
                   <svg
                     aria-hidden="true"
@@ -153,11 +166,13 @@ const HeaderMain = () => {
                       variant="subtitle2"
                       gutterBottom
                     >
-                      0 Item
+                      {Object.keys(cartDetails).length} Item
                     </Typography>
                   </div>
                 </div>
               </CartInfo>
+
+              <CartModal open={open} onClose={handleClose} />
             </Right>
           </Row>
         </Wrapper>
@@ -180,7 +195,7 @@ const Container = styled.div`
   transition: 0.4s all ease-in-out;
 `;
 const Wrapper = styled.div`
-  max-width: 1440px;
+  max-width: 1280px;
   width: 100%;
   margin-left: auto;
   margin-right: auto;
@@ -190,13 +205,21 @@ const Wrapper = styled.div`
 const Row = styled.div`
   display: flex;
   justify-content: space-around;
+  @media (max-width: 980px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
 `;
 const Left = styled.div`
   display: flex;
   flex: 1 1 auto;
-
   max-width: 320px;
   align-items: center;
+  @media (max-width: 1280px) {
+    display: none;
+  }
 `;
 const Middle = styled.div`
   display: flex;
@@ -212,6 +235,17 @@ const Right = styled.div`
   a {
     color: #000000;
     text-decoration: none;
+  }
+
+  @media (max-width: 980px) {
+    width: 100%;
+    justify-content: center;
+    span {
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
   }
 `;
 const LogoContainer = styled.div`
