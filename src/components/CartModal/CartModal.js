@@ -45,7 +45,7 @@ const CartModal = ({ open, onClose }) => {
       cartItems,
       totalPrice,
     };
-    fetch("http://localhost:5000/order", {
+    fetch("https://pharmeasy-store.herokuapp.com/order", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -54,7 +54,7 @@ const CartModal = ({ open, onClose }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
 
         if (data.success) {
           toast.success(`Order Received`);
@@ -80,7 +80,9 @@ const CartModal = ({ open, onClose }) => {
     >
       <Box sx={style}>
         <Fade direction={"up"}>
-          <Paper sx={{ position: "relative", p: 2 }}>
+          <Paper
+            sx={{ position: "relative", p: 2, border: "1px solid #4caf50" }}
+          >
             <Stack
               direction="row"
               justifyContent="space-around"
@@ -118,7 +120,27 @@ const CartModal = ({ open, onClose }) => {
           {cartItems.map((cartItem) => (
             <CartItem key={cartItem._id} cartItem={cartItem} />
           ))}
-
+          <Stack
+            direction="row"
+            justifyContent="end"
+            alignItems="center"
+            pr={1}
+            mt={5}
+            gap={3}
+          >
+            <Typography variant="h5" fontWeight={"bold"}>
+              Grand Total:{" "}
+              <Typography
+                component="span"
+                variant="h5"
+                fontWeight={"bolder"}
+                color="#4caf50"
+                pl="5px"
+              >
+                {totalPrice} &#2547;
+              </Typography>
+            </Typography>
+          </Stack>
           <Stack
             direction="row"
             justifyContent="end"

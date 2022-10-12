@@ -1,4 +1,6 @@
 import React from "react";
+import ContactHeader from "../../components/Contact/ContactHeader";
+import Footer from "../../components/Footer/Footer";
 import HeaderMain from "../../components/HeaderMain/HeaderMain";
 import Navbar from "../../components/Navbar/Navbar";
 import TopHeader from "../../components/TopHeader/TopHeader";
@@ -9,7 +11,8 @@ const About = () => {
       <TopHeader />
       <HeaderMain />
       <Navbar />
-      <h2>aaa</h2>
+      <ContactHeader />
+      <Footer />
     </>
   );
 };

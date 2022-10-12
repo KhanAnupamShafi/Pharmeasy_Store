@@ -17,7 +17,7 @@ const Announcement = () => {
               >
                 <path d="M25.9 12H23V7c0-.6-.4-1-1-1H6C4.3 6 3 7.3 3 9v15c0 .6.4 1 1 1h2.1c.2 1.7 1.7 3 3.4 3s3.2-1.3 3.4-3h8.2c.2 1.7 1.7 3 3.4 3s3.2-1.3 3.4-3H30c.6 0 1-.4 1-1v-5.1c0-.6-.2-1.2-.5-1.7l-2.9-4.4c-.4-.5-1-.8-1.7-.8zM9.5 26c-.8 0-1.5-.7-1.5-1.5S8.7 23 9.5 23s1.5.7 1.5 1.5-.7 1.5-1.5 1.5zm15 0c-.8 0-1.5-.7-1.5-1.5s.7-1.5 1.5-1.5 1.5.7 1.5 1.5-.7 1.5-1.5 1.5zM23 18v-4h3.3l2.7 4h-6z" />
               </svg>
-              <p>FREE Click & Collect on orders over $20</p>
+              <p>FREE Click & Collect on orders over 20&#2547;</p>
             </li>
             <li>
               <svg
@@ -77,6 +77,10 @@ const Row = styled.div`
     flex: 1 0 0%;
     justify-content: space-between;
     list-style: none;
+    @media (max-width: 980px) {
+      flex-direction: column;
+      column-gap: 20;
+    }
     li {
       cursor: pointer;
       display: flex;
@@ -87,6 +91,10 @@ const Row = styled.div`
       color: #1a1a1a;
       &:hover {
         text-decoration: underline;
+      }
+      @media (max-width: 980px) {
+        flex-direction: column;
+        margin-bottom: 20px;
       }
     }
   }

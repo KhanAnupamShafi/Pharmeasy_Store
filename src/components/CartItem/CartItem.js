@@ -40,7 +40,7 @@ const CartItem = ({ cartItem }) => {
           <Grid xs={12} sm={6} md={3}>
             <Avatar
               alt="Cart Item"
-              src={cartItem.imgPath}
+              src={cartItem.imgFile || cartItem.img}
               sx={{ width: "100%", height: 88, pr: 1 }}
               variant="square"
             />

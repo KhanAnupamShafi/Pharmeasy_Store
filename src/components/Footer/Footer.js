@@ -12,6 +12,7 @@ import {
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import FooterBottom from "./FooterBottom";
+import { devices } from "../../responsive";
 
 const Footer = () => {
   return (
@@ -24,11 +25,11 @@ const Footer = () => {
                 <Details>
                   <Logo>
                     <img src={logo} alt="Logo" />
-                    <h5>
+                    <p>
                       Do you want to be the first to know about promotions and
                       discounts?
-                    </h5>
-                    <p>Subscribe to our newsletter and buy profitably!</p>
+                    </p>
+                    <span>Subscribe to our newsletter and buy profitably!</span>
                   </Logo>
                   <Info>
                     <Company>
@@ -184,6 +185,10 @@ const FooterContainer = styled.div`
   display: flex;
   align-items: center;
   overflow: hidden;
+
+  @media (max-width: 980px) {
+    flex-direction: column;
+  }
 `;
 const FooterContent = styled.div`
   flex: 3;
@@ -195,6 +200,9 @@ const FooterContent = styled.div`
 const Row = styled.div`
   display: flex;
   align-items: center;
+  @media (max-width: 980px) {
+    flex-direction: column;
+  }
 `;
 const Logo = styled.div`
   /* display: block; */
@@ -206,23 +214,27 @@ const Logo = styled.div`
     vertical-align: middle;
     margin-bottom: 15px;
   }
-  h5 {
+  p {
     font-size: 1rem;
-    font-family: "Roboto", sans-serif;
-    font-weight: bold;
+    /* font-family: "Roboto", sans-serif; */
+    font-weight: light;
     line-height: 1.25;
     margin-bottom: 6px;
   }
-  p {
+  span {
     font-family: "Roboto", sans-serif;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 400;
     letter-spacing: 0.012rem;
+    font-style: italic;
   }
 `;
 const Details = styled.div`
   /* flex: 1 0 auto; */
   flex: 2;
+  @media (max-width: 980px) {
+    text-align: center;
+  }
 `;
 
 const Contact = styled.div`
@@ -277,6 +289,9 @@ const Info = styled.div`
 
 const Company = styled.div`
   flex: auto;
+  span {
+    font-size: 15px;
+  }
   h2 {
     font-family: "Roboto", sans-serif;
     font-size: 20px;

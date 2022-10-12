@@ -26,7 +26,7 @@ const MyOrders = () => {
 
   useEffect(() => {
     if (user) {
-      fetch(`http://localhost:5000/order?email=${user.email}`, {
+      fetch(`https://pharmeasy-store.herokuapp.com/order?email=${user.email}`, {
         method: "GET",
         headers: {
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -94,7 +94,7 @@ const MyOrders = () => {
                     <TableCell width="15%" align="center">
                       <Avatar
                         alt="order Item"
-                        src={item.imgPath}
+                        src={item.imgFile || item.img}
                         sx={{
                           width: "150px",
                           height: "130px",

@@ -1,9 +1,9 @@
-import { Button, Typography } from "@mui/material";
+import { Button, Chip, Typography } from "@mui/material";
 import React, { useState } from "react";
 import styled from "styled-components";
 import { ReactComponent as LogoSVG } from "../../assets/logo/Logo.svg";
 import { BsSearch } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../Firebase/firebase.init";
 import { signOut } from "firebase/auth";
@@ -14,6 +14,7 @@ const HeaderMain = () => {
   const [user] = useAuthState(auth);
   const [fix, setFix] = useState(false);
   const { cartDetails } = useShoppingCart();
+  const navigate = useNavigate();
   // const [isOpen, setIsOpen] = useState(false);
 
   // const toggleModal = () => setIsOpen(!isOpen);
@@ -25,6 +26,7 @@ const HeaderMain = () => {
   const logout = () => {
     signOut(auth);
     localStorage.removeItem("accessToken");
+    navigate("/");
   };
 
   const setFixedEvent = () => {
@@ -51,9 +53,11 @@ const HeaderMain = () => {
               </SearchForm>
             </Left>
             <Middle>
-              <LogoContainer>
-                <LogoSVG />
-              </LogoContainer>
+              <Link to="/">
+                <LogoContainer>
+                  <LogoSVG />
+                </LogoContainer>
+              </Link>
             </Middle>
             <Right>
               {user ? (
@@ -77,17 +81,22 @@ const HeaderMain = () => {
                       display="block"
                       variant="button"
                     >
-                      Welcome,
-                      <Typography component="span" variant="overline">
-                        {user.displayName ? user?.displayName : "user"}
-                      </Typography>
+                      Welcome,{" "}
+                      <Chip
+                        label={
+                          <Typography component="span" variant="overline">
+                            {user.displayName ? user?.displayName : "user"}
+                          </Typography>
+                        }
+                        color="success"
+                      />
                     </Typography>
                     <div>
                       <Button
                         onClick={logout}
                         variant="text"
                         color="error"
-                        sx={{ padding: 0 }}
+                        sx={{ padding: 0, mt: 1 }}
                       >
                         sign out
                         {/* <Typography

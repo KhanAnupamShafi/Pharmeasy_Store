@@ -2,6 +2,7 @@ import {
   AppBar,
   Avatar,
   Box,
+  Chip,
   CssBaseline,
   Divider,
   Drawer,
@@ -9,10 +10,12 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
+import { Stack } from "@mui/system";
 import PropTypes from "prop-types";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { BiMenu, BiUserCircle } from "react-icons/bi";
+import { FaBolt } from "react-icons/fa";
 import { Outlet } from "react-router-dom";
 import DashboardLinks from "../../components/DashboardLinks/DashboardLinks";
 // import Footer from "../../components/Footer/Footer";
@@ -21,14 +24,17 @@ import { StyledBadge } from "../../components/StyledComponent/StyledBadge";
 // import Navbar from "../../components/Navbar/Navbar";
 import TopHeader from "../../components/TopHeader/TopHeader";
 import auth from "../../Firebase/firebase.init";
+import UseAdminAccess from "../../hooks/useAdminAccess";
+import useSuperAdminAccess from "../../hooks/useSuperAdmin";
 
 const drawerWidth = 240;
 
 const Dashboard = (props) => {
   const [user] = useAuthState(auth);
-
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [admin] = UseAdminAccess(user);
+  const [adminSuper] = useSuperAdminAccess(user);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -57,6 +63,21 @@ const Dashboard = (props) => {
         </StyledBadge>
 
         <Typography variant="subtitle1">{user?.displayName}</Typography>
+
+        <Stack
+          spacing={1}
+          direction="row"
+          justifyContent="center"
+          alignItems="center"
+        >
+          {adminSuper && (
+            <Typography variant="overline">
+              <FaBolt color="#e91e63" />
+              Super
+            </Typography>
+          )}
+          {admin && <Chip label="Admin" size="small" />}
+        </Stack>
       </Toolbar>
       <Divider />
       <DashboardLinks />

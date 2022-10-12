@@ -5,6 +5,7 @@ import TopHeader from "../../components/TopHeader/TopHeader";
 import PageBanner from "../../components/PageBanner/PageBanner";
 import Products from "../../components/Products/Products";
 import Footer from "../../components/Footer/Footer";
+import Announcement from "../../components/Announcement/Announcement";
 
 const Pharmacy = () => {
   return (
@@ -14,6 +15,7 @@ const Pharmacy = () => {
       <Navbar />
       <PageBanner />
       <Products />
+      <Announcement />
       <Footer />
     </>
   );

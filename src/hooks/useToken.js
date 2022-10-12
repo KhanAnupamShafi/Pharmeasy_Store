@@ -4,11 +4,11 @@ const useToken = (user) => {
   const [token, setToken] = useState("");
 
   useEffect(() => {
-    // console.log("user inside hook", user);
     const email = user?.user?.email;
     const currentUser = { email: email };
+    console.log("user inside hook", currentUser);
     if (email) {
-      fetch(`http://localhost:5000/user/${email}`, {
+      fetch(`https://pharmeasy-store.herokuapp.com/user/${email}`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",

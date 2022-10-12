@@ -37,7 +37,7 @@ const SignUp = ({ userGoogle }) => {
   } = useForm({});
 
   const onSubmit = async (data) => {
-    console.log(data);
+    // console.log(data);
     await createUserWithEmailAndPassword(data?.email1, data?.password1);
     await updateProfile({ displayName: data?.firstName });
     // navigate("/home");

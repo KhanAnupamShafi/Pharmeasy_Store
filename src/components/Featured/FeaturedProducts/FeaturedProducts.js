@@ -12,12 +12,14 @@ import { deepPurple } from "@mui/material/colors";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import React from "react";
 import { styled } from "@mui/material/styles";
+import { Link } from "react-router-dom";
+import { Zoom } from "react-awesome-reveal";
 
 const FeaturedProducts = ({ products }) => {
   const classes = useStyles();
   return (
     <>
-      {products.map((data) => (
+      {products.slice(0, 6).map((data) => (
         <Grid2
           key={data._id}
           item
@@ -29,50 +31,54 @@ const FeaturedProducts = ({ products }) => {
             verticalAlign: "middle",
           }}
         >
-          <Card className={classes.card}>
-            <CardHeader
-              sx={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                zIndex: 2,
-                fontSize: "16px",
-              }}
-              avatar={
-                <Avatar
-                  className={classes.avatar}
-                  sx={{
-                    color: "white",
-                    bgcolor: "#ef837b",
-                    fontSize: "14px",
-                    p: 3,
-                    width: "2.6rem",
-                    height: "2.6rem",
-                  }}
-                  aria-label="sale"
-                >
-                  50% OFF
-                </Avatar>
-              }
-            />
-            <CardMedia
-              className={classes.media}
-              component="img"
-              image={data.imgPath}
-              alt="product photo"
-            />
-          </Card>
-          <CardContent className={classes.content}>
-            <Typography
-              variant={"subtitle2"}
-              sx={{ fontSize: 16 }}
-              gutterBottom
-              color={deepPurple[900]}
-            >
-              {data?.title}
-            </Typography>
-            <MuiButton variant="outlined">Shop Now</MuiButton>
-          </CardContent>
+          <Zoom cascade damping={0.1}>
+            <Card className={classes.card}>
+              <CardHeader
+                sx={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  zIndex: 2,
+                  fontSize: "16px",
+                }}
+                avatar={
+                  <Avatar
+                    className={classes.avatar}
+                    sx={{
+                      color: "white",
+                      bgcolor: "#ef837b",
+                      fontSize: "14px",
+                      p: 3,
+                      width: "2.6rem",
+                      height: "2.6rem",
+                    }}
+                    aria-label="sale"
+                  >
+                    50% OFF
+                  </Avatar>
+                }
+              />
+              <CardMedia
+                className={classes.media}
+                component="img"
+                image={data.img}
+                alt="product photo"
+              />
+            </Card>
+            <CardContent className={classes.content}>
+              <Typography
+                variant={"subtitle2"}
+                sx={{ fontSize: 16 }}
+                gutterBottom
+                color={deepPurple[900]}
+              >
+                {data?.title}
+              </Typography>
+              <Link to="/product" style={{ textDecoration: "none" }}>
+                <MuiButton variant="outlined">Shop Now</MuiButton>
+              </Link>
+            </CardContent>
+          </Zoom>
         </Grid2>
       ))}
     </>

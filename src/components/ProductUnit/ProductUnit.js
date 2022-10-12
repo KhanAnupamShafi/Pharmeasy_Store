@@ -32,21 +32,23 @@ const ProductUnit = () => {
   const formattedDate = format(deliveryDate, "PPPP");
 
   // useEffect(() => {
-  //   fetch(`http://localhost:5000/product/${id}`)
+  //   fetch(`https://pharmeasy-store.herokuapp.com/product/${id}`)
   //     .then((res) => res.json())
   //     .then((data) => console.log(data));
   // }, [id]);
 
   const { data: product, isLoading } = useQuery(["ProductUnit", id], () =>
-    fetch(`http://localhost:5000/product/${id}`).then((res) => res.json())
+    fetch(`https://pharmeasy-store.herokuapp.com/product/${id}`).then((res) =>
+      res.json()
+    )
   );
   const price = formatProductPrice(product);
 
   if (isLoading) {
     return (
-      <p>
-        <LinearProgress />
-      </p>
+      <Stack direction="row" justifyContent="center" alignItems="center">
+        <LinearProgress color="success" />
+      </Stack>
     );
   }
   return (
@@ -61,7 +63,7 @@ const ProductUnit = () => {
               <CardMedia
                 component="img"
                 sx={{ width: 560, display: { xs: "none", sm: "block" } }}
-                image={product?.imgPath}
+                image={product.imgFile || product.img}
                 alt={"Product photo"}
               />
             </Card>
@@ -93,7 +95,7 @@ const ProductUnit = () => {
                 sx={{ pt: 2, pb: 2 }}
               >
                 <Chip
-                  label={"Glucose Meter"}
+                  label={product?.category}
                   variant="outlined"
                   color="success"
                   icon={<BiCategoryAlt size={20} />}
@@ -106,7 +108,7 @@ const ProductUnit = () => {
                     variant="subtitle2"
                     pl="6px"
                   >
-                    Tripster
+                    {product?.brand}
                   </Typography>
                 </Typography>
               </Stack>
@@ -126,7 +128,7 @@ const ProductUnit = () => {
                   <BiCheckCircle size={30} color="#18873C" />
                   <Typography variant="subtitle1">In Stock</Typography>
                   <Typography variant="subtitle2" color="#595959" pl={1}>
-                    (22 left)
+                    ({product?.stock} left)
                   </Typography>
                 </Box>
                 <Paper
@@ -141,12 +143,7 @@ const ProductUnit = () => {
                     overflow: "auto",
                   }}
                 >
-                  <Typography variant="body1">
-                    Telfast 120mg helps relieve the symptoms of hayfever
-                    allergies including sneezing and runny nose. Telfast 120mg
-                    10 tablets provide fast acting, non-drowsy 24 hour relief
-                    from hayfever allergies.
-                  </Typography>
+                  <Typography variant="body1">{product?.desc}</Typography>
                 </Paper>
                 <Paper
                   variant="outlined"
@@ -177,13 +174,20 @@ const ProductUnit = () => {
                 }}
               >
                 <Typography variant="h5">{price}</Typography>
-                <Typography
-                  component="span"
-                  variant="subtitle2"
-                  color="#8897a2"
-                >
-                  MRP &#2547;<s>124</s>
-                </Typography>
+                {product?.discount > 0 && (
+                  <Typography
+                    component="span"
+                    variant="subtitle2"
+                    color="#8897a2"
+                  >
+                    MRP &#2547;
+                    <s>
+                      {Math.floor(
+                        product?.price / (1 - product?.discount / 100)
+                      )}
+                    </s>
+                  </Typography>
+                )}
               </Paper>
               <Stack
                 direction="row"

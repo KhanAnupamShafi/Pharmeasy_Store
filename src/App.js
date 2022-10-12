@@ -14,6 +14,12 @@ import ProductUnit from "./components/ProductUnit/ProductUnit";
 import MyOrders from "./pages/Dashboard/MyOrders";
 import Payment from "./pages/Dashboard/Payment";
 import Users from "./pages/Dashboard/Users";
+import RequireAdmin from "./pages/Authentication/RequireAdmin";
+import AddProduct from "./pages/Dashboard/AddProduct";
+import AllProduct from "./pages/Dashboard/AllProduct";
+import UpdateProduct from "./pages/Dashboard/UpdateProduct";
+import RequireMaster from "./pages/Authentication/RequireMaster";
+import ReviewSales from "./pages/Dashboard/ReviewSales";
 
 function App() {
   const theme = createTheme({
@@ -63,7 +69,46 @@ function App() {
         >
           <Route index element={<MyOrders />}></Route>
           <Route path="payment" element={<Payment />}></Route>
-          <Route path="users" element={<Users />}></Route>
+          <Route
+            path="users"
+            element={
+              <RequireAdmin>
+                <Users />
+              </RequireAdmin>
+            }
+          ></Route>
+          <Route
+            path="add"
+            element={
+              <RequireAdmin>
+                <AddProduct />
+              </RequireAdmin>
+            }
+          ></Route>
+          <Route
+            path="all"
+            element={
+              <RequireAdmin>
+                <AllProduct />
+              </RequireAdmin>
+            }
+          ></Route>
+          <Route
+            path="update/:id"
+            element={
+              <RequireAdmin>
+                <UpdateProduct />
+              </RequireAdmin>
+            }
+          ></Route>
+          <Route
+            path="review"
+            element={
+              <RequireMaster>
+                <ReviewSales />
+              </RequireMaster>
+            }
+          ></Route>
         </Route>
         <Route path="registration" element={<SignIn />} />
       </Routes>
